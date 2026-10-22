@@ -1,15 +1,14 @@
 import bpy
 import os
 
-# === LIMPAR A CENA ===
+# limpa a cena
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
 
-# === CONFIGURAÇÕES ===
 ASSETS_DIR = r"C:\\Users\\glauc\\OneDrive\\Desktop\\SI - CEST\\2026.2 - 6p\\Computação Gráfica\\solar-system\\assets"
 bpy.context.scene.render.engine = 'CYCLES'
 
-
+#função
 def criar_corpo(nome, arquivo, posicao, escala):
     """Cria uma esfera com a textura de imagem aplicada."""
     img_path = os.path.join(ASSETS_DIR, arquivo)
@@ -49,7 +48,7 @@ def criar_corpo(nome, arquivo, posicao, escala):
     return obj
 
 
-# === CORPOS CELESTES ===
+#planetas
 # (nome, arquivo da textura, posição (x, y, z), escala)
 corpos = [
     ("Sol",      "sun-texture.jpg",      (0,   0, 15), 10),
@@ -67,7 +66,7 @@ for nome, arquivo, pos, escala in corpos:
     criar_corpo(nome, arquivo, pos, escala)
 
 
-# === AJUSTAR VISUALIZAÇÃO PARA MATERIAL PREVIEW ===
+# === ajusta a visualização
 for area in bpy.context.screen.areas:
     if area.type == 'VIEW_3D':
         for space in area.spaces:
